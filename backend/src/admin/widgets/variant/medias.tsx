@@ -101,6 +101,8 @@ const VariantMediasWidget = ({ data }: DetailWidgetProps<AdminProductVariant>) =
   }
 
   if (error || !data.product_id || !mediasData) {
+    console.error(error);
+    console.error(error?.message);
     return (
       <Base heading="Media">
         <div className="flex justify-center items-center min-h-48">

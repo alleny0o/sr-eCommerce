@@ -85,5 +85,9 @@ module.exports = defineConfig({
         ],
       },
     },
+    // variant media module
+    {
+      resolve: "./src/modules/variant-media",
+    },
   ],
 });

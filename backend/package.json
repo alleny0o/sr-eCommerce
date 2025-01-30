@@ -32,7 +32,9 @@
     "@mikro-orm/migrations": "6.4.3",
     "@mikro-orm/postgresql": "6.4.3",
     "awilix": "^8.0.1",
-    "pg": "^8.13.0"
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.13.0",
+    "react-dropzone": "^14.3.5"
   },
   "devDependencies": {
     "@medusajs/test-utils": "2.4.0",
@@ -40,6 +42,7 @@
     "@swc/core": "1.5.7",
     "@swc/jest": "^0.2.36",
     "@types/jest": "^29.5.13",
+    "@types/multer": "^1.4.12",
     "@types/node": "^20.0.0",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.2.25",

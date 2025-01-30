@@ -80,8 +80,12 @@ const VariantMediasWidget = ({ data }: DetailWidgetProps<AdminProductVariant>) =
     error,
   } = useQuery({
     queryKey: ["variant-medias", data.id],
-    queryFn: () => sdk.client.fetch<{ medias: Media[] }>(`/admin/product-variant_medias/variant/${data.id}`),
-    refetchOnMount: "always",
+    queryFn: () => {
+      console.log("Constructing URL with data.id:", data.id);
+      console.log("Base URL:", process.env.REACT_APP_MEDUSA_BACKEND_URL);
+      return sdk.client.fetch<{ medias: Media[] }>(`/admin/product-variant_medias/variant/${data.id}`);
+    },
+        refetchOnMount: "always",
   });
 
   useEffect(() => {

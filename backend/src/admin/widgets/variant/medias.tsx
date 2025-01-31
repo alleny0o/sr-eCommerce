@@ -85,7 +85,7 @@ const VariantMediasWidget = ({ data }: DetailWidgetProps<AdminProductVariant>) =
       console.log("Base URL:", process.env.REACT_APP_MEDUSA_BACKEND_URL);
       return sdk.client.fetch<{ medias: Media[] }>(`/admin/product-variant_medias/variant/${data.id}`);
     },
-        refetchOnMount: "always",
+    refetchOnMount: "always",
   });
 
   useEffect(() => {

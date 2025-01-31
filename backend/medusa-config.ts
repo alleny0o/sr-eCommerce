@@ -1,34 +1,25 @@
 // Copyright (c) 2023. Medusa Technologies GmbH. All rights reserved.
 import { loadEnv, defineConfig } from "@medusajs/framework/utils";
 
-// import variables
-import {
-  IS_PRODUCTION,
-  BACKEND_URL,
-  DATABASE_URL,
-  REDIS_URL,
-  ADMIN_CORS,
-  AUTH_CORS,
-  STORE_CORS,
-  JWT_SECRET,
-  COOKIE_SECRET,
-} from "src/lib/constants";
-
 // load env
 loadEnv(process.env.NODE_ENV || "development", process.cwd());
+
+// variables
+const PRODUCTION = process.env.NODE_ENV === "production";
+const BACKEND_URL = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000";
 
 // export config
 module.exports = defineConfig({
   projectConfig: {
-    databaseUrl: DATABASE_URL,
+    databaseUrl: process.env.DATABASE_URL,
     workerMode: process.env.MEDUSA_WORKER_MODE as "shared" | "worker" | "server",
-    ...(!IS_PRODUCTION ? {} : { redisUrl: REDIS_URL }),
+    ...(!PRODUCTION ? {} : { redisUrl: process.env.REDIS_URL }),
     http: {
-      storeCors: STORE_CORS!,
-      adminCors: ADMIN_CORS!,
-      authCors: AUTH_CORS!,
-      jwtSecret: JWT_SECRET || "supersecret",
-      cookieSecret: COOKIE_SECRET || "supersecret",
+      storeCors: process.env.STORE_CORS!,
+      adminCors: process.env.ADMIN_CORS!,
+      authCors: process.env.AUTH_CORS!,
+      jwtSecret: process.env.JWT_SECRET || "supersecret",
+      cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
   },
   admin: {
@@ -37,7 +28,7 @@ module.exports = defineConfig({
   },
   modules: [
     // redis modules
-    ...(IS_PRODUCTION
+    ...(PRODUCTION
       ? [
           {
             resolve: "@medusajs/medusa/cache-redis",
@@ -66,7 +57,7 @@ module.exports = defineConfig({
       resolve: "@medusajs/medusa/file",
       options: {
         providers: [
-          ...(IS_PRODUCTION
+          ...(PRODUCTION
             ? [
                 {
                   resolve: "@medusajs/medusa/file-s3",

@@ -85,9 +85,18 @@ module.exports = defineConfig({
         ],
       },
     },
+    /* CUSTOM MODULES I MADE!! */
     // variant media module
     {
       resolve: "./src/modules/variant-media",
+    },
+    // product option extension module
+    {
+      resolve: "./src/modules/option-extension",
+    },
+    // product customization form module
+    {
+      resolve: "./src/modules/customization-form",
     },
   ],
 });

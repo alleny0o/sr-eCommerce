@@ -30,6 +30,7 @@ export const GET = async (
   } catch (error) {
     res.status(500).json({
       success: false,
+      message: error,
     });
   }
 };

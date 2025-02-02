@@ -19,9 +19,6 @@ const getCustomizationFormStep = createStep(
         },
         {
           relations: ["fields", "fields.guide_image"],
-          order: {
-            fields: "ASC",
-          },
         }
       );
 

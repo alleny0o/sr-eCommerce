@@ -52,7 +52,7 @@ export const UpdateFormModal = ({ product_id, customizationForm, focusModal, set
               <Button size="small" variant="secondary" onClick={handleCancel}>
                 Cancel
               </Button>
-              <Button size="small" variant="primary" onClick={handleSave}>
+              <Button size="small" variant="primary" onClick={handleSave} disabled={saving}>
                 {saving ? "Saving..." : "Save"}
               </Button>
             </div>

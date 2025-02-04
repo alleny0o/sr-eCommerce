@@ -27,7 +27,7 @@ module.exports = defineConfig({
     backendUrl: process.env.MEDUSA_BACKEND_URL,
   },
   modules: [
-    // redis modules
+    // REDIS MODULES
     ...(PRODUCTION
       ? [
           {
@@ -52,7 +52,7 @@ module.exports = defineConfig({
           },
         ]
       : []),
-    // aws s3
+    // AWS S3 MODULES
     {
       resolve: "@medusajs/medusa/file",
       options: {
@@ -85,6 +85,27 @@ module.exports = defineConfig({
         ],
       },
     },
+    // RESEND MODULES
+    ...(!PRODUCTION
+      ? [
+          {
+            resolve: "@medusajs/medusa/notification",
+            options: {
+              providers: [
+                {
+                  resolve: "./src/modules/resend",
+                  id: "resend",
+                  options: {
+                    channels: ["email"],
+                    api_key: process.env.RESEND_API_KEY,
+                    from: process.env.RESEND_FROM_EMAIL,
+                  },
+                },
+              ],
+            },
+          },
+        ]
+      : []),
     /* CUSTOM MODULES I MADE!! */
     // variant media module
     {

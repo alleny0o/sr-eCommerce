@@ -174,7 +174,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
   return (
     <>
       <Button
-        disabled={notReady}
+        // disabled={notReady}
         isLoading={submitting}
         onClick={handlePayment}
         size="large"

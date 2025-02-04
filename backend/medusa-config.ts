@@ -106,6 +106,25 @@ module.exports = defineConfig({
           },
         ]
       : []),
+    // STRIPE MODULES
+    ...(!PRODUCTION
+      ? [
+          {
+            resolve: "@medusajs/medusa/payment",
+            options: {
+              providers: [
+                {
+                  resolve: "@medusajs/medusa/payment-stripe",
+                  id: "stripe",
+                  options: {
+                    apiKey: process.env.STRIPE_API_KEY,
+                  },
+                },
+              ],
+            },
+          },
+        ]
+      : []),
     /* CUSTOM MODULES I MADE!! */
     // variant media module
     {
@@ -118,6 +137,9 @@ module.exports = defineConfig({
     // product customization form module
     {
       resolve: "./src/modules/customization-form",
+    },
+    {
+      resolve: "./src/modules/customer-review",
     },
   ],
 });

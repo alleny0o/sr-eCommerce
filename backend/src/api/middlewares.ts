@@ -1,5 +1,6 @@
 import { defineMiddlewares } from "@medusajs/medusa";
-import { validateAndTransformBody } from "@medusajs/framework";
+import { validateAndTransformBody, validateAndTransformQuery } from "@medusajs/framework/http";
+import { createFindParams } from "@medusajs/medusa/api/utils/validators";
 
 // schemas
 import {
@@ -13,6 +14,7 @@ import {
   updateOptionExtensionSchema,
   updateOptionVariationSchema,
 } from "./validation-schemas";
+export const GetCustomerReviewsSchema = createFindParams();
 
 // multer
 import multer from "multer";
@@ -77,6 +79,30 @@ export default defineMiddlewares({
       matcher: "/admin/product_option-extensions/option-variation",
       method: "DELETE",
       middlewares: [validateAndTransformBody(deleteOptionVariationSchema)],
+    },
+
+    // ----- /admin/customer-reviews -----
+    {
+      matcher: "/admin/customer-reviews",
+      method: "GET",
+      middlewares: [
+        validateAndTransformQuery(
+          GetCustomerReviewsSchema,
+          {
+            defaults: [
+              'id',
+              'product_id',
+              'customer_id',
+              'title',
+              'comment',
+              'rating',
+              'recommend',
+              'status',
+            ],
+            isList: true,
+          },
+        )
+      ]
     },
   ],
 });

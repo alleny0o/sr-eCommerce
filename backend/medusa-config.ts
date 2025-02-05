@@ -126,7 +126,7 @@ module.exports = defineConfig({
         ]
       : []),
     /* CUSTOM MODULES I MADE!! */
-    // variant media module
+    // product variant media module
     {
       resolve: "./src/modules/variant-media",
     },
@@ -138,6 +138,7 @@ module.exports = defineConfig({
     {
       resolve: "./src/modules/customization-form",
     },
+    // customer product review module
     {
       resolve: "./src/modules/customer-review",
     },

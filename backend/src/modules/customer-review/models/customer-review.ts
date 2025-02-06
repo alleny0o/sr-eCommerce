@@ -22,6 +22,9 @@ const CustomerReview = model
     // You can adjust these values as needed for your application logic.
     status: model.enum(ReviewStatus).default(ReviewStatus.PENDING),
 
+    // Check if the review is edited
+    is_edited: model.boolean().default(false),
+
     // One-to-many relationship to images associated with the review
     images: model.hasMany(() => CustomerReviewImage, {
       mappedBy: "customer_review",

@@ -8,6 +8,9 @@ import { Badge } from "@medusajs/ui";
 import { ReviewStatus } from "../../../../modules/customer-review/types";
 import { CustomerReview } from "../hooks/useCustomerReviews";
 
+// components
+import { ActionsColumnDropdown } from "../components/ActionsColumnDropdown";
+
 const columnHelper = createDataTableColumnHelper<CustomerReview>();
 
 export const customerReviewColumns = [
@@ -32,6 +35,6 @@ export const customerReviewColumns = [
   columnHelper.display({
     id: "actions",
     header: "Actions",
-    cell: () => <div>{/* Add your action buttons here */}</div>,
+    cell: () => <ActionsColumnDropdown/>,
   }),
 ];
